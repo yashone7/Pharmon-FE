@@ -1,0 +1,115 @@
+this belongs to admin component in side bar
+
+<div className="block sm:pr-17 lg:pr-1">
+              <div
+                id="resource-group"
+                className=" pl-2 sm:pr-5 mr-5 mr-10 mt-10"
+              >
+                <ul className="text-gray-400 pr-5 mr-15 md:mr-3">
+                  <li className="ml-2 mt-1 mb-1 mr-10 md:mr-3 text-xl">
+                    Employee
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Create
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Update
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Delete
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Territory
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Analytics
+                  </li>
+                </ul>
+              </div>
+              <div id="resource-group" className=" pl-2 pr-5 mr-5 mr-10 mt-10">
+                <ul className="text-gray-400">
+                  <li className="ml-2 mt-3 mb-1 mr-10 md:mr-3 text-xl">
+                    Doctor
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Create
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Update
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Delete
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Analytics
+                  </li>
+                </ul>
+              </div>
+              <div
+                id="resource-group"
+                className="w-full pl-2 pr-5 mr-5 mr-7 mt-10"
+              >
+                <ul className="text-gray-400">
+                  <li className="ml-2 mt-3 mb-1 mr-10 md:mr-3 text-xl">
+                    Chemist
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Create
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Update
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Delete
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Analytics
+                  </li>
+                </ul>
+              </div>
+              <div
+                id="resource-group"
+                className="w-full pl-2 pr-5 mr-5 mr-7 mt-10"
+              >
+                <ul className="text-gray-400">
+                  <li className="ml-2 mt-3 mb-1 mr-10 md:mr-3 text-xl">
+                    Distributor
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Create
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Update
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Delete
+                  </li>
+                  <li className="ml-3 mt-3 mb-1 mr-10 md:mr-3 text-lg">
+                    Analytics
+                  </li>
+                </ul>
+              </div>
+
+
+
+              logic for the close open
+  const [isActive, Activate] = useState(true);
+  const [sideBar, toggle] = useState("hidden");
+
+    if (isActive) {
+      Activate(false);
+      toggle("");
+    }
+    if (!isActive) {
+      Activate(true);
+      toggle("hidden");
+    }
+     in Employees.jsx I tried to use useState hook
+  //   let [isFormToggled, toggleForm] = useState["hidden"];
+  //   let [isButtonActive, toggleButton] = useState[""];
+  //   const showForm = () => {
+  //     if (isFormToggled === "hidden") {
+  //       toggleForm("");
+  //       toggleButton("hidden");
+  //     }
+  //   };
