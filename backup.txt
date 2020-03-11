@@ -113,3 +113,830 @@ this belongs to admin component in side bar
   //       toggleButton("hidden");
   //     }
   //   };
+
+  //   state = {
+  //     isFormToggled: "hidden",
+  //     isButtonActive: "",
+  //     emp_name: "",
+  //     emp_password: "",
+  //     emp_password2: "",
+  //     emp_phone: "",
+  //     emp_role: "",
+  //     doPasswordsMatch: ""
+  //   };
+
+      //   this.setState({
+      //     ...this.state,
+      //     isFormToggled: "",
+      //     isButtonActive: "hidden"
+      //   });
+      
+      //   this.setState({
+      //     ...this.state,
+      //     isFormToggled: "hidden",
+      //     isButtonActive: ""
+      //   });
+
+  // time to create redux actions -- Done
+
+  // time to create ...? update form and redux update actions!
+
+      for (let chemist of chemists) {
+      if (
+        _.toLower(_.replace(chemist.chem_name, /\s+/g, "")) ===
+        _.toLower(_.replace(name, /\s+/g, ""))
+      ) {
+        return chemist;
+      }
+    }
+    return <SearchCard name={chemist.chem_name} />;
+
+    const Navbar = ({ logout }) => {
+  const [sideBar, toggle] = useState("");
+  const [profile, toggleProfile] = useState("");
+
+  const handleProfile = () => {
+    if (profile === "") {
+      toggleProfile("is-active");
+    } else toggleProfile("");
+    console.log(profile);
+  };
+
+  const handleSideBar = () => {
+    if (sideBar === "") {
+      toggle("hidden");
+    }
+    if (sideBar === "hidden") {
+      toggle("");
+    }
+  };
+  const handleLogout = () => {
+    logout();
+  };
+  return (
+    <Fragment>
+      <div
+        className={`w-3/5 sm:w-1/4 md:w-1/4 lg:w-1/5 bg-stoic-green ${sideBar}`}
+      >
+        <div className="block text-center mt-3">
+          <FontAwesomeIcon icon={faCubes} color="#83ed12" size="4x" />
+          <h3 className="text-3xl text-green-400 ">PHARMON</h3>
+        </div>
+        <div className="block mt-5 mb-5 pl-3">
+          <div className="inline-flex items-baseline">
+            <FontAwesomeIcon icon={faSlidersH} size="sm" color="white" />
+            <p className="text-gray-400 hover:bg-dull-green text-base ml-2 p-2">
+              Dashboard
+            </p>
+          </div>
+          <div>
+            <ul className="text-gray-400 pl-10 mt-3 mb-2">
+              <Link
+                to="/employees"
+                className="text-gray-400 hover:text-gray-400"
+              >
+                <li className="mt-1 p-2  w-full text-sm hover:bg-dull-green mb-2">
+                  Employees
+                </li>
+              </Link>
+              <Link to="/doctors" className="text-gray-400 hover:text-gray-400">
+                <li className="mt-1 p-2 text-sm hover:bg-dull-green mb-2">
+                  Doctors
+                </li>
+              </Link>
+              <Link
+                to="/chemists"
+                className="text-gray-400 hover:text-gray-400"
+              >
+                <li className="mt-1 p-2 text-sm hover:bg-dull-green mb-2">
+                  Chemists
+                </li>
+              </Link>
+              <Link
+                to="/distributors"
+                className="text-gray-400 hover:text-gray-400"
+              >
+                <li className="mt-1 p-2 text-sm hover:bg-dull-green mb-2">
+                  Distributors
+                </li>
+              </Link>
+              <Link
+                to="/products"
+                className="text-gray-400 hover:text-gray-400"
+              >
+                <li className="mt-1 p-2 text-sm hover:bg-dull-green mb-2">
+                  Products
+                </li>
+              </Link>
+            </ul>
+          </div>
+        </div>
+        <div className="block mt-5 mb-5 pl-3">
+          <div className="inline-flex items-baseline">
+            <FontAwesomeIcon icon={faChartLine} size="sm" color="white" />
+            <p className="text-gray-400 text-base hover:bg-dull-green ml-2 p-2">
+              Analytics
+            </p>
+          </div>
+          <div>
+            <ul className="text-gray-400 pl-10 mt-3 mb-2">
+              <li className="mt-1 p-2 text-sm hover:bg-dull-green mb-2">
+                Employees
+              </li>
+              <li className="mt-1 p-2 text-sm hover:bg-dull-green mb-2">
+                Chemists
+              </li>
+              <li className="mt-1 p-2 text-sm hover:bg-dull-green mb-2">
+                Distributors
+              </li>
+              <li className="mt-1 p-2 text-sm hover:bg-dull-green mb-2">
+                Sales
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className="w-full h-full ">
+        <nav
+          className="navbar is-flex-touch justify-between ml-1 mr-1 p-1 mt-2 rounded shadow-md"
+          aria-label="main navigation"
+        >
+          <div className="navbar-start">
+            <div className="navbar-item p-2" onClick={handleSideBar}>
+              <FontAwesomeIcon icon={faBars} size="lg" />
+            </div>
+          </div>
+          <div className="navbar-end">
+            <button className="navbar-item" onClick={handleProfile}>
+              <FontAwesomeIcon icon={faUser} size="lg" />
+            </button>
+            <div className={`dropdown is-right ${profile}`}>
+              <div className="dropdown-menu">
+                <div className="dropdown-content">
+                  <div className="dropdown-item">
+                    <button onClick={handleLogout}>
+                      <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
+                      <span className="pl-1 ml-1">Log out</span>
+                    </button>
+                  </div>
+                  <div className="dropdown-item">
+                    <Link className="text-gray-800" to="/profile">
+                      My Profile
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </Fragment>
+  );
+};
+
+Navbar.propTypes = {
+  logout: PropTypes.func.isRequired
+};
+
+export default connect(null, { logout })(Navbar);
+
+
+
+const Employees = ({ createEmployee, setAlert, getEmployees, employees }) => {
+  useEffect(() => {
+    getEmployees();
+  }, [getEmployees]);
+
+  const [isFormToggled, toggleForm] = useState("hidden");
+  const [isUpdateFormToggled, toggleUpdateForm] = useState("hidden");
+  const [isButtonActive, toggleButton] = useState("");
+  const [searchData, handleSearchData] = useState({ name: "" });
+  const [doPasswordsMatch, triggerStatus] = useState("");
+
+  const [formData, handleFormData] = useState({
+    emp_name: "",
+    emp_phone: "",
+    emp_password: "",
+    emp_password2: "",
+    emp_role: ""
+  });
+
+  const {
+    emp_name,
+    emp_role,
+    emp_phone,
+    emp_password,
+    emp_password2
+  } = formData;
+
+  const { name } = searchData;
+
+  const showForm = () => {
+    if (isFormToggled === "hidden") {
+      toggleForm("");
+      toggleButton("hidden");
+    }
+    if (isFormToggled === "") {
+      toggleForm("hidden");
+      toggleButton("");
+    }
+  };
+
+  const showUpdateForm = () => {
+    if (isUpdateFormToggled === "hidden") {
+      toggleUpdateForm("");
+      toggleButton("hidden");
+    } else {
+      toggleUpdateForm("hidden");
+      toggleButton("");
+    }
+  };
+
+  const handleEmployeeForm = async e => {
+    e.preventDefault();
+    if (emp_password !== emp_password2) {
+      setAlert("passwords do not match", "danger");
+      triggerStatus("is-danger");
+    } else {
+      triggerStatus("is-success");
+      createEmployee({ emp_name, emp_phone, emp_password, emp_role });
+    }
+  };
+
+  const handleSearch = e => {
+    handleSearchData({ ...searchData, [e.target.name]: e.target.value });
+
+    for (let employee of employees) {
+      if (
+        _.toLower(_.replace(employee.emp_name, /\s+/g, "")) ===
+        _.toLower(_.replace(name, /\s+/g, ""))
+      ) {
+        return employee;
+      }
+    }
+  };
+
+  const handleCreateEmployee = e => {
+    handleFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <Fragment>
+      <div className="block md:inline-flex m-2">
+        <div className="rounded m-2">
+          <button
+            className={`w-full pt-5 pb-5 bg-blue-700 ${isButtonActive} hover:bg-blue-500 rounded`}
+            onClick={showForm}
+          >
+            <h1>
+              <span className="text-gray-200 text-lg text-center m-1 p-1 ">
+                Create a new employee
+              </span>
+            </h1>
+          </button>
+          <div
+            className={`rounded ${isFormToggled} w-full sm:w-1/2 md:w-1/3 lg:w-1/2 xl:w-1/2 h-auto`}
+          >
+            <button
+              className="m-2 p-2 bg-teal-500 text-gray-200 rounded"
+              onClick={showForm}
+            >
+              Back
+            </button>
+            <p className="mt-2 mb-2 ml-2 text-lg">Enter employee details</p>
+            <form className="w-full" onSubmit={e => handleEmployeeForm(e)}>
+              <label className="label ml-2" htmlFor="Name">
+                Name
+              </label>
+              <input
+                className="input ml-2 mb-2"
+                type="text"
+                name="emp_name"
+                value={emp_name}
+                id="Name"
+                required
+                placeholder="Name"
+                onChange={e => handleCreateEmployee(e)}
+              />
+              <label className="label ml-2" htmlFor="Phone">
+                Phone Number
+              </label>
+              <input
+                className="input ml-2 mb-2"
+                type="text"
+                pattern="[0-9]*"
+                name="emp_phone"
+                value={emp_phone}
+                id="Phone"
+                required
+                placeholder="Phone number"
+                onChange={e => handleCreateEmployee(e)}
+              />
+              <label className="label ml-2" htmlFor="Password">
+                Password
+              </label>
+              <input
+                className={`input ml-2 mb-2 ${doPasswordsMatch}`}
+                type="password"
+                name="emp_password"
+                value={emp_password}
+                id="Password"
+                placeholder="use default value as password"
+                onChange={e => handleCreateEmployee(e)}
+              />
+              <label className="label ml-2" htmlFor="Password2">
+                Confirm Password
+              </label>
+              <input
+                className={`input ml-2 mb-2 ${doPasswordsMatch}`}
+                type="password"
+                name="emp_password2"
+                value={emp_password2}
+                id="Password2"
+                placeholder="Confirm password"
+                onChange={e => handleCreateEmployee(e)}
+              />
+              <span className="ml-2 mr-4 font-semibold">Role</span>
+              <label htmlFor="admin">Admin</label>
+              <input
+                className="ml-2 mr-2"
+                type="radio"
+                name="emp_role"
+                value="admin"
+                id="admin"
+                onChange={e => handleCreateEmployee(e)}
+              />
+              <label htmlFor="representative">Representative</label>
+              <input
+                className="ml-2 mr-2"
+                type="radio"
+                name="emp_role"
+                value="representative"
+                id="representative"
+                onChange={e => handleCreateEmployee(e)}
+              />
+              <button
+                type="submit"
+                value="submit"
+                className="button is-primary ml-2"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+        <div className="rounded m-2">
+          <button
+            className={`w-full pt-5 pb-5 bg-blue-700 ${isButtonActive} hover:bg-blue-500 rounded`}
+            onClick={showUpdateForm}
+          >
+            <h1>
+              <span className="text-gray-200 text-lg text-center  p-1 m-1">
+                Update an employee
+              </span>
+            </h1>
+          </button>
+          <div className={`rounded ${isUpdateFormToggled} w-auto h-auto`}>
+            <button
+              className="m-2 p-2 bg-teal-500 text-gray-200 rounded"
+              onClick={showUpdateForm}
+            >
+              Back
+            </button>
+            <div className="text-gray-800 text-lg m-1 p-1">
+              Search for employees
+            </div>
+            <div className="control has-icons-left">
+              <input
+                className="input"
+                type="text"
+                value={name}
+                name="name"
+                onChange={e => handleSearch(e)}
+                placeholder="Search for employees"
+              />
+              <span className="icon is-left">
+                <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
+              </span>
+              <button className="button is-primary mt-2" onClick={handleSearch}>
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+  );
+};
+Employees.propTypes = {
+  createEmployee: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
+  getEmployees: PropTypes.func.isRequired,
+  employees: PropTypes.array.isRequired
+};
+
+const mapStatetoProps = state => ({
+  employees: state.employeeReducer.employees
+});
+
+export default connect(mapStatetoProps, {
+  createEmployee,
+  setAlert,
+  getEmployees
+})(Employees);
+
+import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { createChemist } from "../../redux/actions/chemistAction";
+import _ from "lodash";
+
+const ChemistRegForm = ({ createChemist }) => {
+  const [chemFormData, handleChemForm] = useState({
+    chem_name: "",
+    chem_phone: "",
+    chem_location: {},
+    Address: "",
+    Email: ""
+  });
+  const { chem_name, chem_phone, chem_location, Address, Email } = chemFormData;
+  const handleSubmit = async e => {
+    e.preventDefault();
+    createChemist({ chem_name, chem_phone, chem_location, Address, Email });
+  };
+
+  const getLocation = () => {
+    let options = {
+      enableHighAccuracy: true,
+      timeout: 3000,
+      maximumAge: 0
+    };
+
+    function success(pos) {
+      let coords = pos.coords;
+      let coordinates = [];
+      coordinates.push(coords.longitude, coords.latitude);
+      _.assign(chem_location, {
+        type: "MultiPoint",
+        coordinates: [coordinates]
+      });
+    }
+    navigator.geolocation.getCurrentPosition(success, null, options);
+  };
+
+  const handleFormData = e => {
+    handleChemForm({ ...chemFormData, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <Fragment>
+      <form>
+        <label htmlFor="chem_name">Name</label>
+        <input
+          type="text"
+          placeholder="Chemist name"
+          id="chem_name"
+          name="chem_name"
+          value={chem_name}
+          className="input my-2"
+          onChange={e => handleFormData(e)}
+        />
+        <label htmlFor="chem_phone">Phone</label>
+        <input
+          type="text"
+          pattern="[0-9]*"
+          placeholder="Chemist phone"
+          id="chem_phone"
+          name="chem_phone"
+          value={chem_phone}
+          className="input my-2"
+          onChange={e => handleFormData(e)}
+        />
+        <label htmlFor="chem_email">Email</label>
+        <input
+          type="email"
+          placeholder="Chemist email"
+          id="chem_email"
+          name="Email"
+          value={Email}
+          className="input my-2"
+          onChange={e => handleFormData(e)}
+        />
+        <label htmlFor="chem_address">Address</label>
+        <textarea
+          id="chem_address"
+          className="textarea my-2"
+          cols="30"
+          rows="10"
+          placeholder="Enter Address"
+          name="Address"
+          onChange={e => handleFormData(e)}
+          value={Address}
+        ></textarea>
+      </form>
+      <button className="button is-info m-2" onClick={getLocation}>
+        Get location
+      </button>
+      <button
+        className="button is-primary m-2"
+        onClick={handleSubmit}
+        value="submit"
+        type="submit"
+      >
+        Create Chemist
+      </button>
+    </Fragment>
+  );
+};
+
+ChemistRegForm.propTypes = {
+  createChemist: PropTypes.func.isRequired
+};
+
+export default connect(null, { createChemist })(ChemistRegForm);
+
+/**
+ *  chem name, chem phone, chem location, chem contact(address, email)
+ */
+
+import React, { Fragment, useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { getChemists } from "../../redux/actions/chemistAction";
+import PropTypes from "prop-types";
+import SearchCard from "../subComponents/SearchCard";
+import _ from "lodash";
+
+const ChemUpdateForm = ({ getChemists, chemists }) => {
+  useEffect(() => {
+    getChemists();
+  }, [getChemists]);
+
+  const [searchBarValue, setSearchBarValue] = useState({ name: "" });
+  const { name } = searchBarValue;
+
+  const handleChange = e => {
+    setSearchBarValue({ ...searchBarValue, [e.target.name]: e.target.value });
+  };
+
+  const renderSearchCard = () => {
+    const chem = _.filter(chemists, function(c) {
+      return (
+        _.toLower(_.replace(c.chem_name, /\s+/g, "")) ===
+        _.toLower(_.replace(name, /\s+/g, ""))
+      );
+    });
+    const chemist = {};
+    _.assign(chemist, chem[0]);
+    return <SearchCard name={chemist.chem_name} />;
+  };
+  return (
+    <Fragment>
+      <div className="control has-icons-left">
+        <input
+          type="text"
+          className="input"
+          placeholder="Search for a chemist"
+          name="name"
+          value={name}
+          onChange={e => handleChange(e)}
+        />
+        <span className="icon is-left">
+          <FontAwesomeIcon icon={faSearch} size="sm" />
+        </span>
+        <button className="my-2 button is-primary" onClick={handleChange}>
+          Search
+        </button>
+        {renderSearchCard()}
+      </div>
+    </Fragment>
+  );
+};
+
+ChemUpdateForm.propTypes = {
+  chemists: PropTypes.array.isRequired
+};
+
+const mapStateToProps = state => ({
+  chemists: state.chemistReducer.chemists
+});
+
+export default connect(mapStateToProps, { getChemists })(ChemUpdateForm);
+
+
+import React, { useState, Fragment } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { login, loadUser } from "../redux/actions/authAction";
+import { Redirect } from "react-router-dom";
+import decoder from "jwt-decode";
+
+const Login = ({ login, isAuthenticated, token }) => {
+  const [formData, handleFormData] = useState({
+    emp_phone: "",
+    emp_password: ""
+  });
+
+  const { emp_password, emp_phone } = formData;
+
+  const onSubmit = async e => {
+    e.preventDefault();
+    login(emp_phone, emp_password);
+  };
+
+  const handleLogin = e => {
+    handleFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  if (isAuthenticated) {
+    const employee = decoder(token);
+    if (employee.user.role) {
+      return <Redirect to="/admin" />;
+    } else {
+      return <Redirect to="/representative" />;
+    }
+  }
+
+  return (
+    <Fragment>
+      <div className="sm:w-1/2 mt-12">
+        <form
+          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          onSubmit={e => onSubmit(e)}
+        >
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="emp_phone"
+            >
+              Phone Number
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="[0-9]*"
+              id="emp_phone"
+              placeholder="Phone"
+              name="emp_phone"
+              required
+              value={emp_phone}
+              onChange={e => handleLogin(e)}
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              type="password"
+              id="password"
+              placeholder="Password"
+              name="emp_password"
+              required
+              value={emp_password}
+              onChange={e => handleLogin(e)}
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <button
+              type="submit"
+              value="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline is-primary"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </Fragment>
+  );
+};
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.authReducer.isAuthenticated,
+  token: state.authReducer.token
+});
+
+export default connect(mapStateToProps, { login, loadUser })(Login);
+
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+
+const Profile = ({ auth: { isAuthenticated } }) => {
+  if (!isAuthenticated) {
+    return <Redirect to="/" />;
+  }
+  return (
+    <div className="text-center text-lg">
+      <h1>
+        this is profile page Lorem,
+        {console.log("this is test")}
+      </h1>
+    </div>
+  );
+};
+
+Profile.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.authReducer
+});
+
+export default connect(mapStateToProps)(Profile);
+
+
+  // if (isAuthenticated) {
+  //   const employee = decoder(token);
+  //   if (employee.user.role) {
+  //     return <Redirect to="/admin" />;
+  //   } else {
+  //     return <Redirect to="/representative" />;
+  //   }
+  // }
+
+   <AdminRoutes
+              exact
+              path="/employees"
+              component={Employees}
+              isAuthenticated={isAuthenticated}
+              token={token}
+            />
+            <AdminRoutes
+              exact
+              path="/profile"
+              component={Profile}
+              isAuthenticated={isAuthenticated}
+              token={token}
+            />
+            <AdminRoutes
+              exact
+              path="/chemists"
+              component={Chemists}
+              isAuthenticated={isAuthenticated}
+              token={token}
+            />
+            <AdminRoutes
+              exact
+              path="/distributors"
+              component={Distributors}
+              token={token}
+            />
+            <AdminRoutes
+              exact
+              path="/doctors"
+              component={Doctors}
+              isAuthenticated={isAuthenticated}
+              token={token}
+            />
+            <AdminRoutes
+              exact
+              path="/products"
+              component={Products}
+              isAuthenticated={isAuthenticated}
+              token={token}
+            />
+
+
+              // if (isAuthenticated) {
+  //   const employee = decoder(token);
+  //   if (employee.user.emp_role === "admin") {
+  //     return <Redirect to="/admin" />;
+  //   }
+  //   if (employee.user.emp_role === "representative") {
+  //     return <Redirect to="/representative" />;
+  //   }
+  // }
+
+
+  {adminRoutes.map((route, index) => (
+     <adminRoutes.layout>
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              children={route.main}
+            />
+            </adminRoutes.layout>
+          ))}
+
+    // for (let employee of employees) {
+    //   if (
+    //     _.toLower(_.replace(employee.emp_name, /\s+/g, "")) ===
+    //     _.toLower(_.replace(name, /\s+/g, ""))
+    //   ) {
+    //     return employee;
+    //   }
+    // } this doesn't work because employee is scoped to the for loop itself

@@ -1,15 +1,16 @@
 import React, { Fragment } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { login } from "../redux/actions/authAction";
 import decoder from "jwt-decode";
 
 const Landing = ({ isAuthenticated, token }) => {
   if (isAuthenticated) {
     const employee = decoder(token);
-    if (employee.user.role) {
+    console.log(employee);
+    if (employee.user.role === "admin") {
       return <Redirect to="/admin" />;
-    } else {
+    }
+    if (employee.user.role === "representative") {
       return <Redirect to="/representative" />;
     }
   }
@@ -28,4 +29,4 @@ const mapStatetoProps = state => ({
   token: state.authReducer.token
 });
 
-export default connect(mapStatetoProps, { login })(Landing);
+export default connect(mapStatetoProps)(Landing);

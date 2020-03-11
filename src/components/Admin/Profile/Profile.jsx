@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 
-const Distributors = () => {
+const Profile = () => {
   return (
     <Fragment>
-      <h1>distributors</h1>
+      <h1>this is profile component</h1>
     </Fragment>
   );
 };
 
-export default Distributors;
+export default Profile;

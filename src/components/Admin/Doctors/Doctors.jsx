@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 
-const Chemists = () => {
+const Doctors = () => {
   return (
     <Fragment>
-      <h1>Chemist component</h1>
+      <h1>This is doctors component</h1>
     </Fragment>
   );
 };
 
-export default Chemists;
+export default Doctors;

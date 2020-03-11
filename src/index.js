@@ -4,6 +4,10 @@ import "./index.css";
 import App from "./App";
 import "bulma/css/bulma.min.css";
 import * as serviceWorker from "./serviceWorker";
+import "mapbox-gl/dist/mapbox-gl.css";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
